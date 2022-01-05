@@ -2,8 +2,8 @@ This is based on the book Distributed Services with Go by [Travis Jeffery](https
 
 # Setup
 ## Replaced libs
-Using ectd's fork of Bolt which includes fixes for Go 1.14+
-$ go mod edit -replace github.com/hashicorp/raft-boltdb=github.com/travisjeffery/raft-boltdb@v1.0.0
+* Using ectd's fork of Bolt which includes fixes for Go 1.14+
+  * $ go mod edit -replace github.com/hashicorp/raft-boltdb=github.com/travisjeffery/raft-boltdb@v1.0.0
 ## Protobuf
 * $ wget https://github.com/protocolbuffers/protobuf/releases/download/v3.19.1/protoc-3.19.1-linux-x86_64.zip
 * $ unzip protoc-3.19.1-linux-x86_64.zip -d /usr/local/protbuf
@@ -18,11 +18,11 @@ $ go mod edit -replace github.com/hashicorp/raft-boltdb=github.com/travisjeffery
 
 # Run tests
 ## Setup
-1. $ go install github.com/cloudflare/cfssl/cmd/cfssl@v1.6.1 github.com/cloudflare/cfssl/cmd/cfssljson@v1.6.1
-2. $ make init
-3. $ make gencert
+* $ go install github.com/cloudflare/cfssl/cmd/cfssl@v1.6.1 github.com/cloudflare/cfssl/cmd/cfssljson@v1.6.1
+* $ make init
+* $ make gencert
 ## Run
-$ make test
+* $ make test
 
 # Run locally
 * $ make build-docker
@@ -38,11 +38,13 @@ $ make test
 * $ gcloud auth login
 * $ PROJECT_ID=$(gcloud projects list | tail -n 1 | cut -d' ' -f1)
 * $ gcloud config set project $PROJECT_ID
-* $ gcloud auth configure-docker // updates ~/.docker/config.json
+* $ gcloud auth configure-docker
+  * updates ~/.docker/config.json
 * $ docker tag github.com/fiurgeist/proglog:0.0.1 eu.gcr.io/$PROJECT_ID/proglog:0.0.1
 * $ docker push eu.gcr.io/$PROJECT_ID/proglog:0.0.1
 ## Deploy with Helm
-* $ gcloud container cluster get-credentials proglog --zone europe-west3-c // updates ~/.kube/config.json with credentials and endpoints
+* $ gcloud container cluster get-credentials proglog --zone europe-west3-c
+  * updates ~/.kube/config.json with credentials and endpoints
 * $ cd delpoy
 * $ kubectl create namespace metacontroller
 * $ helm install metacontroller metacontroller
